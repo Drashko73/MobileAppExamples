@@ -6,10 +6,10 @@ namespace backend.Interfaces
 {
     public interface IItemRepository
     {
-        public void CreateToDoItem(CreateItemDto item);
-        public void UpdateToDoItem(UpdateItemDto updateItemDto);
+        public Task<ToDoItem> CreateToDoItem(CreateItemDto item);
+        public Task<ToDoItem?> UpdateToDoItem(UpdateItemDto updateItemDto);
 
-        public void DeleteToDoItem(int id);
-        public List<ToDoItem> GetAllItems();
+        public Task<ToDoItem?> DeleteToDoItem(int id);
+        public Task<List<ToDoItem>> GetAllItems();
     }
 }

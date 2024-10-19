@@ -2,6 +2,7 @@
 using backend.DTOs;
 using backend.Interfaces;
 using backend.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace backend.Repositories
 {
@@ -12,24 +13,43 @@ namespace backend.Repositories
         {
             _context = context;
         }
-        public void CreateToDoItem(CreateItemDto item)
+        public async Task<ToDoItem> CreateToDoItem(CreateItemDto item)
         {
-            throw new NotImplementedException();
+            ToDoItem toDoItem = new ToDoItem();
+            toDoItem.Activity = item.Activity;
+            toDoItem.IsCompleted = false;
+
+            await _context.AddAsync(toDoItem);
+            await _context.SaveChangesAsync();
+
+            return toDoItem;
         }
 
-        public void DeleteToDoItem(int id)
+        public async Task<ToDoItem?> DeleteToDoItem(int id)
         {
-            throw new NotImplementedException();
+            var item = _context.ToDoItems.FirstOrDefault(i => i.Id == id);
+            if (item != null)
+            {
+                _context.ToDoItems.Remove(item);
+            }
+            await _context.SaveChangesAsync();
+            return item;
         }
 
-        public List<ToDoItem> GetAllItems()
+        public async Task<List<ToDoItem>> GetAllItems()
         {
-            throw new NotImplementedException();
+            return await _context.ToDoItems.ToListAsync();
         }
 
-        public void UpdateToDoItem(UpdateItemDto updateItemDto)
+        public async Task<ToDoItem?> UpdateToDoItem(UpdateItemDto updateItemDto)
         {
-            throw new NotImplementedException();
+            var item = await _context.ToDoItems.FirstOrDefaultAsync(i=>i.Id == updateItemDto.Id);
+            if (item != null)
+            {
+                item.IsCompleted = updateItemDto.IsCompleted;
+            }
+            await _context.SaveChangesAsync();
+            return item;
         }
     }
 }

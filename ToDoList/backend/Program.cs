@@ -1,4 +1,6 @@
 using backend.Data;
+using backend.Interfaces;
+using backend.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,6 +11,10 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+
+//Scopes/DI
+builder.Services.AddScoped<IItemRepository,ItemRepository>();
 
 
 builder.Services.AddDbContext<ToDoContext>(options=> options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
