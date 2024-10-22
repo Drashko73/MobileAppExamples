@@ -39,12 +39,12 @@ fun ToDoApp(viewModel: ToDoViewModel = viewModel()) {
         topBar = {
             TopAppBar(title = { Text("ToDo List") })
         },
-        content = { paddingValues ->  // Accept the paddingValues parameter
+        content = { paddingValues ->
             Column(
                 modifier = Modifier
-                    .fillMaxSize() // Fill the screen vertically
-                    .padding(paddingValues) // Apply the inner padding from Scaffold (to avoid overlap with app bar)
-                    .padding(16.dp) // Additional padding for the content
+                    .fillMaxSize()
+                    .padding(paddingValues)
+                    .padding(16.dp)
             ) {
 
                 // Input field for a new task
@@ -52,19 +52,19 @@ fun ToDoApp(viewModel: ToDoViewModel = viewModel()) {
                     value = newTaskName,
                     onValueChange = { newTaskName = it },
                     modifier = Modifier
-                        .fillMaxWidth() // Input field will take up full width
-                        .padding(vertical = 8.dp), // Padding between input field and surrounding content
+                        .fillMaxWidth()
+                        .padding(vertical = 8.dp),
                     decorationBox = { innerTextField ->
                         Box(
                             modifier = Modifier
-                                .fillMaxWidth() // Box takes full width
+                                .fillMaxWidth()
                                 .background(MaterialTheme.colors.surface, MaterialTheme.shapes.small)
-                                .padding(16.dp) // Padding inside the box for better text field layout
+                                .padding(16.dp)
                         ) {
                             if (newTaskName.isEmpty()) {
                                 Text("Enter new task name", color = MaterialTheme.colors.onSurface.copy(alpha = 0.5f))
                             }
-                            innerTextField() // Display the actual input field
+                            innerTextField()
                         }
                     }
                 )
@@ -78,22 +78,26 @@ fun ToDoApp(viewModel: ToDoViewModel = viewModel()) {
                             newTaskName = ""
                         }
                     },
-                    modifier = Modifier.padding(top = 8.dp) // Space above the button
+                    modifier = Modifier.padding(top = 8.dp)
                 ) {
                     Text("Add Task")
                 }
 
-                // Task list
+                // Loading spinner when fetching tasks
                 if (viewModel.isLoading) {
                     CircularProgressIndicator(modifier = Modifier.padding(16.dp))
                 } else {
-                    Column {
-                        viewModel.taskList.forEach { task ->
-                            TaskItem(
-                                task = task,
-                                onDelete = { viewModel.deleteTask(it) },
-                                onToggleComplete = { viewModel.updateTask(it.copy(isCompleted = !it.isCompleted)) }
-                            )
+                    if (viewModel.taskList.value.isEmpty()) {
+                        Text("No tasks available.")
+                    } else {
+                        Column {
+                            viewModel.taskList.value.forEach { task ->
+                                TaskItem(
+                                    task = task,
+                                    onDelete = { viewModel.deleteTask(it) },
+                                    onToggleComplete = { viewModel.updateTask(it.copy(isCompleted = !it.isCompleted)) }
+                                )
+                            }
                         }
                     }
                 }
@@ -101,6 +105,7 @@ fun ToDoApp(viewModel: ToDoViewModel = viewModel()) {
         }
     )
 }
+
 
 
 @Composable

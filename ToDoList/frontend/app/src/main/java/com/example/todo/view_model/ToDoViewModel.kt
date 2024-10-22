@@ -1,5 +1,8 @@
 package com.example.todo.view_model
 
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.todo.RetrofitConfig
@@ -9,15 +12,16 @@ import retrofit2.Response
 
 class ToDoViewModel : ViewModel() {
 
-    var taskList: List<ToDoTask> = listOf()
-    var isLoading = true
+    var taskList = mutableStateOf<List<ToDoTask>>(listOf())
+    var isLoading by mutableStateOf(true)
 
     // Fetch all tasks
     fun fetchTasks() {
         viewModelScope.launch {
             val response = RetrofitConfig.toDoTaskService.getTasks()
+            println(response.isSuccessful)
             if (response.isSuccessful) {
-                taskList = response.body() ?: listOf()
+                taskList.value = response.body() ?: listOf()
                 isLoading = false
             }
         }

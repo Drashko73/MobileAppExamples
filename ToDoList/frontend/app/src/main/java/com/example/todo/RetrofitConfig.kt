@@ -9,7 +9,7 @@ object RetrofitConfig {
 
     val toDoTaskService: ToDoTaskService by lazy {
         Retrofit.Builder()
-            .baseUrl("http://localhost:5168/api/ToDo/GetAllItems")  // Replace with your API base URL
+            .baseUrl("http://10.0.2.2:5168/api/ToDo/")  // Replace with your API base URL
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(ToDoTaskService::class.java)
