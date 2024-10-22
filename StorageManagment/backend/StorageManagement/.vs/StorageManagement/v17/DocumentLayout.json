@@ -1,0 +1,41 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\srdja\\Desktop\\App\\MobileAppExamples\\StorageManagment\\backend\\StorageManagement\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{793FF5BF-B9B6-4285-9D4D-9DB77DDF879B}|StorageManagement\\StorageManagement.csproj|c:\\users\\srdja\\desktop\\app\\mobileappexamples\\storagemanagment\\backend\\storagemanagement\\storagemanagement\\.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{793FF5BF-B9B6-4285-9D4D-9DB77DDF879B}|StorageManagement\\StorageManagement.csproj|solutionrelative:storagemanagement\\.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": ".gitignore",
+              "DocumentMoniker": "C:\\Users\\srdja\\Desktop\\App\\MobileAppExamples\\StorageManagment\\backend\\StorageManagement\\StorageManagement\\.gitignore",
+              "RelativeDocumentMoniker": "StorageManagement\\.gitignore",
+              "ToolTip": "C:\\Users\\srdja\\Desktop\\App\\MobileAppExamples\\StorageManagment\\backend\\StorageManagement\\StorageManagement\\.gitignore",
+              "RelativeToolTip": "StorageManagement\\.gitignore",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2024-10-22T08:52:18.288Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
